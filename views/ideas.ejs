@@ -1,0 +1,27 @@
+<%- include('./partials/head.ejs') %> 
+
+<%- include('./partials/navbar.ejs') %> 
+
+<div class="container w-50">
+    <h1>View Ideas</h1>
+    
+  <%- include('./partials/msg.ejs') %> 
+
+    <% if(ideas.length > 0 ) { %> 
+        <% ideas.forEach((ideas) => { %>
+            <div class="card card-body mb-2">
+                <h3><%= ideas.title %></h3>
+                    <h5><%= ideas.details %></h5>
+                    <a class="btn btn-info mr-1 my-2" href="/ideas/edit/<%= ideas._id %>"> Edit</a>
+                        <form action="/ideas/<%= ideas._id %>?_method=DELETE" method="POST">
+                            <button type="submit" class="btn btn-danger btn-block">Delete</button>
+                        </form>  
+                
+            </div>
+        <% }) %>
+    <% } else { %> 
+        <p>No videos to display</p>
+    <% } %>
+</div>
+
+<%- include('./partials/footer.ejs') %> 
